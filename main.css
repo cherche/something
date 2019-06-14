@@ -1,0 +1,53 @@
+/* {
+  outline: 1px dotted red;
+}/**/
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#game {
+  position: absolute;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: #bbb;
+}
+
+tr,
+td {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+}
+
+td,
+.player {
+  width: 72px;
+  height: 72px;
+  border: 0;
+}
+
+.t1 {
+  background-color: #333;
+}
+
+.player {
+  background-color: #f9444d;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: 1s all;
+}
