@@ -1,4 +1,5 @@
 import Keyboard from './keyboard.js'
+// import U from './util.js'
 
 const WIDTH = 5
 const HEIGHT = 5
@@ -62,22 +63,22 @@ const isInBounds = function isInBounds (x, y) {
 
 const move = function move (cx, cy) {
   const [x, y] = [player[0] + cx, player[1] + cy]
-  if (!isInBounds(x, y) || getMapVal(x, y) === 1) return
+  // We want a way to tell whether we successfully moved or not
+  if (!isInBounds(x, y) || getMapVal(x, y) === 1) return false
   movePlayer(x, y, 250)
+  return true
 }
 
 const keyboard = new Keyboard()
 keyboard.bind(window)
 
-let limit = Date.now()
-
+let isMoving = false
 // Only problem is that it's kind of chunky
 // Smooth movement is ideal, but implementation would vary a lot from what is here
 // It would be necessary to implement a proper renderer instead of
 // lazily using CSS transition (which is already pretty nice, if I might add)
 const main = function main () {
-  const now = Date.now();
-  if (now >= limit) {
+  if (!isMoving) {
     const st = keyboard.getStates()
 
     // Should implement XOR
@@ -87,17 +88,29 @@ const main = function main () {
       // Ideally, it should function as follows:
       // If I am pressing W then start pressing A,
       // the A doesn't change anything (until W is lifted)
+      let x
+      let y
       if (st.w) {
-        move(0, -1)
+        x = 0
+        y = -1
       } else if (st.a) {
-        move(-1, 0)
+        x = -1
+        y = 0
       } else if (st.s) {
-        move(0, 1)
+        x = 0
+        y = 1
       } else if (st.d) {
-        move(1, 0)
+        x = 1
+        y = 0
       }
 
-      limit = now + 250
+      if (typeof x === 'number') {
+        move(x, y)
+        isMoving = true
+        setTimeout(() => {
+          isMoving = false
+        }, 250)
+      }
     }
   }
 

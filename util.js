@@ -1,11 +1,14 @@
 const U = {}
 
+// It turns out this might now really work for us . . .
 U.throttle = function throttle (func, wait) {
-  let allowed
+  let allowed = true
 
-  return function throttled (options) {
+  return function throttled (...options) {
     if (allowed) {
-      func.apply(options)
+      console.log(options)
+      func.apply(this, options)
+      allowed = false
 
       setTimeout(() => {
         allowed = true
