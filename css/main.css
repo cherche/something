@@ -17,12 +17,19 @@ body {
 
 #game {
   position: absolute;
+  /* Should be manually set (JS) depending on desired tile size */
+  width: 360px;
+  height: 360px;
+  overflow: hidden;
 }
 
 table {
   border-collapse: collapse;
   border-spacing: 0;
   background-color: #bbb;
+  /* Should be manually set (JS) depending on desired tile size */
+  width: 432px;
+  height: 432px;
 }
 
 tr,
@@ -35,6 +42,7 @@ td {
 
 td,
 .player {
+  /* Should be manually set (JS) depending on desired tile size */
   width: 72px;
   height: 72px;
   border: 0;

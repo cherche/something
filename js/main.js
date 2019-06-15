@@ -1,15 +1,16 @@
 import Keyboard from './keyboard.js'
 // import U from './util.js'
 
-const WIDTH = 5
-const HEIGHT = 5
+const WIDTH = 6
+const HEIGHT = 6
 
 const map =
-  '00000' +
-  '01000' +
-  '01001' +
-  '10001' +
-  '11011'
+  '000000' +
+  '010000' +
+  '010010' +
+  '100010' +
+  '110110' +
+  '000000'
 
 const getMapVal = function getMapVal (x, y) {
   return parseInt(map[x + WIDTH * y])
