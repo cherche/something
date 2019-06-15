@@ -8,25 +8,25 @@ export default function Keyboard () {
     states[e.key] = false
   }
 
-  const bind = function bind (el) {
-    el.addEventListener('keydown', onkeydown)
-    el.addEventListener('keyup', onkeyup)
-  }
-
-  const unbind = function unbind (el) {
-    el.removeEventListener('keydown', onkeydown)
-    el.removeEventListener('keyup', onkeyup)
-
-    for (let key of Object.keys(states)) {
-      states[key] = false
-    }
-  }
-
   const keyboard = {
-    bind,
-    unbind,
-    getStates: () => {
+    bind: function bind (el) {
+      el.addEventListener('keydown', onkeydown)
+      el.addEventListener('keyup', onkeyup)
+    },
+    unbind: function unbind (el) {
+      el.removeEventListener('keydown', onkeydown)
+      el.removeEventListener('keyup', onkeyup)
+
+      for (let key of Object.keys(states)) {
+        states[key] = false
+      }
+    },
+    getStates: function getStates () {
       return states
+    },
+    getPressed: function getPressed () {
+      const pressed = Object.keys(states).filter(key => states[key])
+      return pressed
     }
   }
 
