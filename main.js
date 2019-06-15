@@ -105,11 +105,14 @@ const main = function main () {
       }
 
       if (typeof x === 'number') {
-        move(x, y)
-        isMoving = true
-        setTimeout(() => {
-          isMoving = false
-        }, 250)
+        const isValid = move(x, y)
+
+        if (isValid) {
+          isMoving = true
+          setTimeout(() => {
+            isMoving = false
+          }, 250)
+        }
       }
     }
   }
@@ -125,3 +128,4 @@ window.cells = cells
 window.player = $player
 window.move = move
 window.movePlayer = movePlayer
+window.isMoving = () => isMoving
