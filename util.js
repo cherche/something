@@ -4,10 +4,10 @@ const U = {}
 U.throttle = function throttle (func, wait) {
   let allowed = true
 
-  return function throttled (...options) {
+  return function throttled () {
     if (allowed) {
       console.log(options)
-      func.apply(this, options)
+      func.call(this, arguments)
       allowed = false
 
       setTimeout(() => {
